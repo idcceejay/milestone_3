@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HTTP Versions – Web Evolution Project</title>
+
+  <!-- Google Font (optional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Main JS -->
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <!-- Skip link -->
+  <a class="skip" href="#main">Skip to main content</a>
+
+  <!-- Nav -->
+  <nav class="menu" aria-label="Main">
+    <a id="brand" href="index.html">Main Menu</a>
+
+    <!-- Mobile toggle -->
+    <button class="menu__toggle" aria-controls="menu-links" aria-expanded="false" aria-label="Toggle navigation">
+      ☰
+    </button>
+
+    <div id="menu-links" class="links">
+      <a href="http-history.html">History</a>
+      <a href="http-versions.html" aria-current="page">HTTP Versions</a>
+      <a href="key-concepts.html">Key Concepts</a>
+      <a href="references.html">References</a>
+      <a href="about.html">About</a>
+      <a href="quiz.html">Quiz</a>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main id="main" class="wrapper">
+    <h1>HTTP Versions – From 0.9 to 3</h1>
+    <p class="intro">
+      HTTP evolved with the Web—from a single-method text protocol to today’s encrypted, mobile-friendly transport over QUIC.
+      Below is a comparison matrix, per-version notes, and the full essay that informs this page.
+    </p>
+
+    <figure class="banner">
+      <img src="assets/versions.svg" alt="Diagram showing a timeline of different HTTP protocol versions" />
+    </figure>
+
+    <!-- Comparison table -->
+    <div class="table-wrapper">
+      <table class="compare">
+        <caption>HTTP Feature Matrix</caption>
+        <thead>
+          <tr>
+            <th>Version</th>
+            <th>Era / Standardization</th>
+            <th>Transport</th>
+            <th>Key Features</th>
+            <th>Performance &amp; Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>0.9</td>
+            <td>Early 1990s (CERN)</td>
+            <td>TCP</td>
+            <td>Single <code>GET</code>; raw HTML; no headers</td>
+            <td>Ultra-simple and stateless; enabled the first web pages.</td>
+          </tr>
+          <tr>
+            <td>1.0</td>
+            <td>1996 (first official spec)</td>
+            <td>TCP</td>
+            <td>Headers, MIME types, status codes (e.g., 404)</td>
+            <td>Many TCP connections per page; higher latency.</td>
+          </tr>
+          <tr>
+            <td>1.1</td>
+            <td>1997 (dominant for ~20 years)</td>
+            <td>TCP</td>
+            <td>Persistent connections, caching, chunked transfer</td>
+            <td>Faster loads via keep-alive; still suffered HoL blocking per connection.</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>2015</td>
+            <td>TCP</td>
+            <td>Multiplexing, binary framing, header compression; server push</td>
+            <td>Major latency reduction; simultaneous streams on one TCP connection; widely adopted.</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Standardized 2022</td>
+            <td>QUIC over UDP</td>
+            <td>Built-in encryption, faster handshakes (0-RTT), better loss recovery</td>
+            <td>Mobile-friendly and resilient; adoption accelerating across CDNs and major sites.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Per-version detail sections -->
+    <section aria-labelledby="v09">
+      <h2 id="v09">HTTP/0.9 – The Seed of the Web</h2>
+      <ul>
+        <li>Only <code>GET</code>, no headers—returned raw HTML; simple by design for early documents.</li>
+        <li>Established a browser–server pattern that scaled beyond academic use.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="v10">
+      <h2 id="v10">HTTP/1.0 – Rich Content Arrives</h2>
+      <ul>
+        <li>Introduced headers, MIME types, and status codes—enabling images and multimedia.</li>
+        <li>Latency rose because each page often opened multiple TCP connections.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="v11">
+      <h2 id="v11">HTTP/1.1 – The Dot-Com Workhorse</h2>
+      <ul>
+        <li>Persistent connections (keep-alive), chunked transfer, and improved caching.</li>
+        <li>Dominated for nearly two decades; enabled large-scale commercial web apps.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="v2">
+      <h2 id="v2">HTTP/2 – Parallelism on a Single Connection</h2>
+      <ul>
+        <li>Binary framing + multiplexing removes request blocking on a single TCP connection.</li>
+        <li>Header compression cuts overhead; optional server push can pre-send assets.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="v3">
+      <h2 id="v3">HTTP/3 – QUIC for the Mobile Internet</h2>
+      <ul>
+        <li>Runs over QUIC (UDP) with built-in encryption and faster handshakes (including 0-RTT).</li>
+        <li>More resilient to packet loss and network changes (Wi-Fi ↔ LTE handoffs).</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="dev">
+      <h2 id="dev">Developer Takeaways</h2>
+      <ol>
+        <li><strong>Prefer HTTPS everywhere.</strong> Security &amp; platform features assume TLS.</li>
+        <li><strong>Design for HTTP/2/3.</strong> Parallel requests are fine; still minimize bytes &amp; round trips.</li>
+        <li><strong>Cache correctly.</strong> Use explicit freshness and validators to cut latency.</li>
+        <li><strong>Measure user-perceived speed.</strong> Track LCP/TTFB to validate protocol gains.</li>
+      </ol>
+    </section>
+
+    <!-- Essay PDF -->
+    <section id="essay" aria-labelledby="essay-title" class="wrapper narrow">
+      <h2 id="essay-title">Full Essay: Evolution of HTTP</h2>
+      <p class="note">This is the complete essay that informs the content on this page.</p>
+
+      <p>
+        <a href="assets/essay.pdf" target="_blank" rel="noopener">Open essay in a new tab</a>
+        &nbsp;•&nbsp;
+        <a href="assets/essay.pdf" download>Download PDF</a>
+      </p>
+
+      <div class="pdf-wrap">
+        <iframe
+          src="assets/essay.pdf"
+          title="Assignment 1 – Essay on Web Evolution"
+          width="100%"
+          height="900"
+          style="border:1px solid #e5e7eb; border-radius:10px;">
+        </iframe>
+      </div>
+
+      <p>If the preview doesn’t load, use the link above to open or download the PDF.</p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p><strong>LinkedIn:</strong>
+      <a href="https://www.linkedin.com/in/ceejay-raut" target="_blank" rel="noopener">
+        linkedin.com/in/ceejay-raut
+      </a>
+    </p>
+    <p>This is a class project for
+      <a href="https://ksuweb.github.io/IT3203/" target="_blank" rel="noopener">
+        IT 3203 – Web Development
+      </a> at Kennesaw State University.
+    </p>
+    <p>© 2025 Ceejay Raut. Built with semantic HTML + CSS Grid/Flex.</p>
+  </footer>
+</body>
+</html>
