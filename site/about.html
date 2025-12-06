@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About – Web Evolution Project</title>
+
+  <!-- Google Font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Main JS -->
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <!-- Skip link for keyboard users -->
+  <a class="skip" href="#main">Skip to main content</a>
+
+  <!-- Main navigation -->
+  <nav class="menu" aria-label="Main">
+    <a id="brand" href="index.html">Main Menu</a>
+
+    <!-- Mobile toggle -->
+    <button class="menu__toggle"
+            aria-controls="menu-links"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      ☰
+    </button>
+
+    <div id="menu-links" class="links">
+      <a href="http-history.html">History</a>
+      <a href="http-versions.html">HTTP Versions</a>
+      <a href="key-concepts.html">Key Concepts</a>
+      <a href="references.html">References</a>
+      <a href="about.html" aria-current="page">About</a>
+      <a href="quiz.html">Quiz</a>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main id="main" class="wrapper narrow">
+    <h1>About</h1>
+    <p><em>Project Milestone – IT 3203</em></p>
+
+    <figure class="banner">
+      <img src="assets/about.svg" alt="Illustration representing About page" />
+    </figure>
+
+    <section aria-labelledby="who">
+      <h2 id="who">Who I Am</h2>
+      <p><strong>My name is Ceejay Raut. I am a student at Kennesaw State University Honors College studying Information Technology with a focus in Cybersecurity.</strong></p>
+      <p><strong>Course:</strong> IT 3203 Web Development</p>
+      <p>
+        This site is part of a multi-stage project on the evolution of the Web and HTTP.
+        It applies semantic HTML, a single external CSS file, and modern layout techniques
+        (Flexbox &amp; Grid) with accessibility and responsive design in mind.
+      </p>
+    </section>
+
+    <section aria-labelledby="skills">
+      <h2 id="skills">Résumé Breakdown</h2>
+      <ul>
+        <li><strong>Skills:</strong> HTML5, CSS (Grid/Flex), basic JavaScript, Python, Video Editing, Excel, Recruitment</li>
+        <li><strong>Interests:</strong> Cybersecurity, Data Analysis, Web Performance</li>
+        <li><strong>Tools:</strong> VS Code, Git/GitHub, Browser DevTools</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="linkedin">
+      <h2 id="linkedin">LinkedIn</h2>
+      <ul>
+        <li>
+          <a href="https://www.linkedin.com/in/ceejay-raut"
+             target="_blank" rel="noopener"
+             aria-label="Open Ceejay Raut's LinkedIn profile">
+            LinkedIn: linkedin.com/in/ceejay-raut
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="resume">
+      <h2 id="resume">Résumé</h2>
+      <p>
+        <a href="assets/resume.pdf" target="_blank" rel="noopener">
+          Open Résumé (PDF)
+        </a>
+      </p>
+
+      <figure class="banner">
+        <iframe
+          src="assets/resume.pdf"
+          title="Ceejay Raut – Résumé"
+          width="100%"
+          height="800"
+          style="border:1px solid #e5e7eb; border-radius:10px;">
+        </iframe>
+      </figure>
+
+      <p>If the preview doesn’t load, use the link above to open or download the PDF.</p>
+    </section>
+  </main>
+
+  <!-- Footer same for every page -->
+  <footer class="site-footer">
+    <p><strong>LinkedIn:</strong>
+      <a href="https://www.linkedin.com/in/ceejay-raut" target="_blank" rel="noopener">
+        linkedin.com/in/ceejay-raut
+      </a>
+    </p>
+    <p>
+      This is a class project for
+      <a href="https://ksuweb.github.io/IT3203/" target="_blank" rel="noopener">
+        IT 3203 – Web Development
+      </a> at Kennesaw State University.
+    </p>
+    <p>© 2025 Ceejay Raut. Built with semantic HTML + CSS Grid/Flex.</p>
+  </footer>
+</body>
+</html>
