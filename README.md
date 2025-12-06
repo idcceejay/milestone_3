@@ -122,7 +122,7 @@ This project includes extensive research on the evolution of HTTP, covering:
 ### 📱 Mobile View (iPhone)
 
 <p align="center">
-  <img src="assets/iphone.jpg" alt="Mobile Screenshot" width="360">
+  <img src="assets/iphone.JPG" alt="Mobile Screenshot" width="360">
 </p>
 
 <p align="center">
