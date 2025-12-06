@@ -1,0 +1,386 @@
+<!doctype html>
+<!--
+  Project: IT 3203 – Milestone 2/3
+  File: quiz.html
+  Purpose: Self-assessment quiz (1 fill-in, 3 single-choice, 1 multi-select) with scoring
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HTTP Self-Assessment Quiz – Web Evolution Project</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Main JS -->
+  <script defer src="script.js"></script>
+
+  <style>
+    /* Minimal quiz-specific styles (kept local so global CSS stays clean) */
+    .quiz {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .quiz fieldset {
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .quiz legend {
+      font-weight: 700;
+      padding: 0 .4rem;
+    }
+    .quiz .controls {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      margin-top: .25rem;
+    }
+    .quiz .actions {
+      display: flex;
+      gap: .75rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .btn {
+      cursor: pointer;
+      border-radius: .6rem;
+      border: 1px solid var(--border);
+      padding: .55rem .9rem;
+      background: var(--panel);
+    }
+    .btn.primary {
+      background: color-mix(in oklab, var(--brand) 18%, var(--panel));
+      border-color: color-mix(in oklab, var(--brand) 35%, var(--border));
+      color: var(--text);
+    }
+    .btn.danger {
+      background: color-mix(in oklab, #ef4444 22%, var(--panel));
+      border-color: color-mix(in oklab, #ef4444 45%, var(--border));
+      color: var(--text);
+    }
+    .results {
+      margin-top: 1rem;
+    }
+    .scorebox {
+      padding: 1rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .pass {
+      background: color-mix(in oklab, #10b981 12%, var(--panel));
+    }
+    .fail {
+      background: color-mix(in oklab, #ef4444 12%, var(--panel));
+    }
+    .per-question li {
+      margin: .35rem 0;
+    }
+    .correct {
+      color: #10b981;
+      font-weight: 600;
+    }
+    .incorrect {
+      color: #ef4444;
+      font-weight: 600;
+    }
+    .small {
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .req {
+      color: #ef4444;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <!-- Skip link -->
+  <a class="skip" href="#main">Skip to main content</a>
+
+  <!-- Nav -->
+  <nav class="menu" aria-label="Main">
+    <a id="brand" href="index.html">Main Menu</a>
+
+    <!-- Mobile toggle -->
+    <button class="menu__toggle"
+            aria-controls="menu-links"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      ☰
+    </button>
+
+    <div id="menu-links" class="links">
+      <a href="index.html">Home</a>
+      <a href="http-history.html">History</a>
+      <a href="http-versions.html">HTTP Versions</a>
+      <a href="key-concepts.html">Key Concepts</a>
+      <a href="references.html">References</a>
+      <a href="about.html">About</a>
+      <a href="quiz.html" aria-current="page">Quiz</a>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main id="main" class="wrapper narrow">
+    <h1>HTTP Self-Assessment Quiz</h1>
+    <p class="intro">
+      Test your understanding from Milestone 1 (history, versions, and key concepts). Results show immediately on this page.
+      <span class="small">Pass mark: 70%.</span>
+    </p>
+
+    <form id="quizForm" class="quiz" novalidate>
+      <!-- Q1: Fill-in-the-blank -->
+      <fieldset>
+        <legend>1) Fill in the blank</legend>
+        <label for="q1">HTTP stands for <em>_________ _________ __________</em>.</label>
+        <input
+          id="q1"
+          name="q1"
+          type="text"
+          required
+          placeholder="Type the full phrase"
+          style="margin-top:.5rem; width:100%; max-width:520px; padding:.55rem .6rem; border:1px solid var(--border); border-radius:.55rem;">
+        <p class="small">Tip: three words, the standard expansion of “HTTP”.</p>
+      </fieldset>
+
+      <!-- Q2: Single-choice -->
+      <fieldset>
+        <legend>2) Which HTTP version introduced multiplexing on a single connection?</legend>
+        <div class="controls" role="radiogroup" aria-label="Q2 choices">
+          <label><input type="radio" name="q2" value="0.9" required> HTTP/0.9</label>
+          <label><input type="radio" name="q2" value="1.1"> HTTP/1.1</label>
+          <label><input type="radio" name="q2" value="2"> HTTP/2</label>
+          <label><input type="radio" name="q2" value="3"> HTTP/3</label>
+        </div>
+      </fieldset>
+
+      <!-- Q3: Single-choice -->
+      <fieldset>
+        <legend>3) HTTP/3 primarily runs over which transport?</legend>
+        <div class="controls" role="radiogroup" aria-label="Q3 choices">
+          <label><input type="radio" name="q3" value="tcp" required> TCP</label>
+          <label><input type="radio" name="q3" value="udp-quic"> QUIC over UDP</label>
+          <label><input type="radio" name="q3" value="sctp"> SCTP</label>
+          <label><input type="radio" name="q3" value="icmp"> ICMP</label>
+        </div>
+      </fieldset>
+
+      <!-- Q4: Single-choice -->
+      <fieldset>
+        <legend>4) Which header specifies the media type of the body?</legend>
+        <div class="controls" role="radiogroup" aria-label="Q4 choices">
+          <label><input type="radio" name="q4" value="accept" required> Accept</label>
+          <label><input type="radio" name="q4" value="content-type"> Content-Type</label>
+          <label><input type="radio" name="q4" value="etag"> ETag</label>
+          <label><input type="radio" name="q4" value="vary"> Vary</label>
+        </div>
+      </fieldset>
+
+      <!-- Q5: Multi-select -->
+      <fieldset>
+        <legend>5) Select all cache validators.</legend>
+        <div class="controls" aria-label="Q5 choices">
+          <label><input type="checkbox" name="q5" value="etag"> ETag</label>
+          <label><input type="checkbox" name="q5" value="last-modified"> Last-Modified</label>
+          <label><input type="checkbox" name="q5" value="cache-control"> Cache-Control</label>
+          <label><input type="checkbox" name="q5" value="accept-encoding"> Accept-Encoding</label>
+        </div>
+        <p class="small">Choose more than one if appropriate.</p>
+      </fieldset>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button type="submit" class="btn primary">Submit Quiz</button>
+        <button type="button" id="resetBtn" class="btn danger">Reset</button>
+      </div>
+
+      <!-- Results area -->
+      <section id="results" class="results" aria-live="polite"></section>
+    </form>
+
+    <p class="note" style="margin-top:1rem">
+      This quiz satisfies Milestone 2 requirements (separate page, mixed controls, scoring, immediate feedback, and reset).
+    </p>
+  </main>
+
+  <!-- Shared footer -->
+  <footer class="site-footer">
+    <p><strong>LinkedIn:</strong>
+      <a href="https://www.linkedin.com/in/ceejay-raut" target="_blank" rel="noopener">
+        linkedin.com/in/ceejay-raut
+      </a>
+    </p>
+    <p>
+      This is a class project for
+      <a href="https://ksuweb.github.io/IT3203/" target="_blank" rel="noopener">
+        IT 3203 – Web Development
+      </a> at Kennesaw State University.
+    </p>
+    <p>© 2025 Ceejay Raut. Built with semantic HTML + CSS Grid/Flex.</p>
+  </footer>
+
+  <script>
+    // Grade the quiz on submit and show detailed feedback inline.
+    (function(){
+      const form = document.getElementById('quizForm');
+      const results = document.getElementById('results');
+      const resetBtn = document.getElementById('resetBtn');
+
+      // Correct answers
+      const ANSWERS = {
+        q1: "hypertext transfer protocol", // case-insensitive match
+        q2: "2",
+        q3: "udp-quic",
+        q4: "content-type",
+        q5: ["etag","last-modified"] // multi-select
+      };
+
+      function normalize(s){ return (s||"").toString().trim().toLowerCase().replace(/\s+/g,' '); }
+
+      function getRadio(name){
+        const el = form.querySelector(`input[name="${name}"]:checked`);
+        return el ? el.value : "";
+      }
+
+      function getChecks(name){
+        return Array.from(form.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value);
+      }
+
+      function grade(){
+        let score = 0;
+        const out = [];
+
+        // Q1: fill-in
+        const q1 = normalize(form.q1.value);
+        const isQ1 = q1 === ANSWERS.q1;
+        if(isQ1) score++;
+        out.push({
+          q: "1) HTTP stands for ____",
+          correct: isQ1,
+          your: form.q1.value || "(blank)",
+          answer: "Hypertext Transfer Protocol"
+        });
+
+        // Q2: radio
+        const q2 = getRadio('q2');
+        const isQ2 = q2 === ANSWERS.q2;
+        if(isQ2) score++;
+        out.push({
+          q: "2) Version that introduced multiplexing",
+          correct: isQ2,
+          your: q2 || "(no choice)",
+          answer: "HTTP/2"
+        });
+
+        // Q3: radio
+        const q3 = getRadio('q3');
+        const isQ3 = q3 === ANSWERS.q3;
+        if(isQ3) score++;
+        out.push({
+          q: "3) Transport for HTTP/3",
+          correct: isQ3,
+          your: q3 || "(no choice)",
+          answer: "QUIC over UDP"
+        });
+
+        // Q4: radio
+        const q4 = getRadio('q4');
+        const isQ4 = q4 === ANSWERS.q4;
+        if(isQ4) score++;
+        out.push({
+          q: "4) Header for media type",
+          correct: isQ4,
+          your: q4 || "(no choice)",
+          answer: "Content-Type"
+        });
+
+        // Q5: checkboxes
+        const q5 = getChecks('q5').sort();
+        const correctSet = ANSWERS.q5.slice().sort();
+        const isQ5 = q5.length === correctSet.length && q5.every((v,i)=>v===correctSet[i]);
+        if(isQ5) score++;
+        out.push({
+          q: "5) Cache validators",
+          correct: isQ5,
+          your: q5.length ? q5.join(", ") : "(no selection)",
+          answer: "ETag; Last-Modified"
+        });
+
+        return { score, details: out, total: 5 };
+      }
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+
+        // basic required checks (so students know if they skipped)
+        const requiredUnanswered = [];
+        if(!form.q1.value.trim()) requiredUnanswered.push("Q1 (fill-in)");
+        if(!getRadio('q2')) requiredUnanswered.push("Q2");
+        if(!getRadio('q3')) requiredUnanswered.push("Q3");
+        if(!getRadio('q4')) requiredUnanswered.push("Q4");
+        if(getChecks('q5').length === 0) requiredUnanswered.push("Q5");
+
+        const { score, details, total } = grade();
+        const pct = Math.round((score/total)*100);
+        const pass = pct >= 70;
+
+        let html = '';
+        if(requiredUnanswered.length){
+          html += `<p class="req">You skipped: ${requiredUnanswered.join(", ")}. You can still see feedback below.</p>`;
+        }
+
+        html += `
+          <div class="scorebox ${pass ? 'pass' : 'fail'}">
+            <strong>${pass ? 'PASS' : 'FAIL'}</strong> — Score: <strong>${score}/${total}</strong> (${pct}%)
+          </div>
+          <ul class="per-question">
+            ${details.map(d => `
+              <li>
+                <span class="${d.correct ? 'correct' : 'incorrect'}">${d.correct ? 'Correct' : 'Incorrect'}:</span>
+                ${d.q}<br>
+                <span class="small">Your answer:</span> ${d.your}<br>
+                <span class="small">Correct answer:</span> ${d.answer}
+              </li>
+            `).join('')}
+          </ul>
+          <div class="actions">
+            <button type="button" class="btn" id="retakeBtn">Retake / Edit Answers</button>
+          </div>
+        `;
+
+        results.innerHTML = html;
+
+        // focus the results for screen readers
+        results.setAttribute('tabindex', '-1');
+        results.focus();
+
+        // retake keeps answers; just scroll to top of form
+        const retake = document.getElementById('retakeBtn');
+        if(retake){
+          retake.addEventListener('click', () => {
+            window.scrollTo({ top: form.offsetTop - 80, behavior: 'smooth' });
+            results.scrollIntoView({ block: 'nearest' });
+          }, { once: true });
+        }
+      });
+
+      resetBtn.addEventListener('click', function(){
+        form.reset();
+        results.innerHTML = '';
+        form.q1.focus();
+      });
+    })();
+  </script>
+</body>
+</html>
