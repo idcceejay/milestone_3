@@ -139,7 +139,7 @@ This project includes extensive research on the evolution of HTTP, covering:
 ### 🖥️ Desktop View
 
 <p align="center">
-  <img src="assets/pc.jpg" alt="Desktop Screenshot" width="800">
+  <img src="assets/pc.JPG" alt="Desktop Screenshot" width="800">
 </p>
 
 <p align="center">
